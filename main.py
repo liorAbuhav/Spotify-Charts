@@ -168,6 +168,20 @@ print(confusion_matrix(svc_prediction, Y_test))
 print(classification_report(svc_prediction, Y_test))
 print('end SVC')
 
+# results graphs
+results = {
+    "logistic regression": logreg_accuracy_score,
+    "random forest": rf_accuracy_score,
+    "decision tree": dt_accuracy_score,
+    "SVC": svc_accuracy_score
+}
+
+fig, axs = plt.subplots(3, 1, figsize=(5, 5))
+axs[0].hist(results)
+axs[1].scatter(results.keys(), results.values())
+axs[2].plot(results.keys(), results.values())
+plt.show()
+
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
 #     print(max_songs_df.head())
 # max_songs_df.to_csv('heronimo.csv', mode='a', header=False)
